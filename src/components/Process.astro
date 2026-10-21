@@ -1,0 +1,34 @@
+---
+import SectionHead from './SectionHead.astro';
+import { site } from '../lib/data';
+
+const { process } = site;
+const tilts = ['-1.5deg', '1.2deg', '-1deg', '1.6deg'];
+---
+<section id="process" class="section" aria-labelledby="process-h">
+  <div class="wrap">
+    <SectionHead eyebrow="Level 5 · Level select" heading={process.heading} id="process-h" />
+    <ol class="steps">
+      {process.steps.map((s, i) => (
+        <li class="step frame reveal" style={`--tilt:${tilts[i % tilts.length]}`}>
+          <span class="lvl" aria-hidden="true">LV {i + 1}</span>
+          <h3>{s.title}</h3>
+          <p>{s.text}</p>
+          {s.time && <p class="hand time">{s.time}</p>}
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 22px; counter-reset: none; }
+  @media (min-width: 900px) { .steps { grid-template-columns: repeat(4, 1fr); gap: 24px; } }
+  .step { padding: 22px 20px 24px; display: flex; flex-direction: column; gap: 10px; }
+  .lvl {
+    align-self: flex-start; font: 400 10px/1 var(--font-pixel); letter-spacing: 0.12em;
+    padding: 7px 8px; background: var(--reign); color: var(--on-reign);
+  }
+  h3 { font-size: 1.375rem; }
+  .time { margin-top: auto; font-size: 1.3rem; }
+</style>

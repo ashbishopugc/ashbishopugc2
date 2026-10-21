@@ -1,0 +1,159 @@
+/* ---------- Tokens ---------- */
+:root {
+  --reign: #3D1F63;
+  --ink: #15101F;
+  --bg: #F6F0E6;
+  --surface: #FBF7F0;
+  --teal: #24B8A8;
+  --red: #E2453C;
+  --orange: #F39A3D;
+  --gold: #C9A43A;
+
+  /* Text-safe variants: the brand teal, red and gold are too light for AA
+     text on cream, so text and focus rings use these darker siblings. */
+  --gold-text: #7A5A0E;
+  --red-text: #B42A21;
+  --focus: #12796E;
+  --muted: #5B5068;
+  --on-reign: #F6F0E6;
+  --line: color-mix(in srgb, var(--reign) 22%, transparent);
+  --shadow: color-mix(in srgb, var(--reign) 20%, transparent);
+  --dots: color-mix(in srgb, var(--reign) 4%, transparent);
+
+  --font-display: 'Unbounded Variable', system-ui, sans-serif;
+  --font-body: 'DM Sans Variable', system-ui, sans-serif;
+  --font-hand: 'Caveat', 'Comic Sans MS', cursive;
+  --font-pixel: 'Press Start 2P', ui-monospace, monospace;
+
+  --header-h: 60px;
+  --track-h: 52px;
+  --gutter: clamp(16px, 5vw, 48px);
+  --max: 1120px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --reign: #B99AE6;
+  --ink: #F6F0E6;
+  --bg: #15101F;
+  --surface: #221A30;
+  --teal: #2FD3C1;
+  --red: #F0625A;
+  --orange: #F6AE5E;
+  --gold: #D9B856;
+  --gold-text: #D9B856;
+  --red-text: #F0625A;
+  --focus: #2FD3C1;
+  --muted: #BDB3C9;
+  --on-reign: #15101F;
+  --shadow: rgba(0, 0, 0, 0.45);
+  --dots: color-mix(in srgb, var(--reign) 5%, transparent);
+  color-scheme: dark;
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 8px); -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background-color: var(--bg);
+  background-image: radial-gradient(var(--dots) 1.2px, transparent 1.3px);
+  background-size: 8px 8px;
+  color: var(--ink);
+  font: 400 1.0625rem/1.6 var(--font-body);
+  padding-bottom: var(--track-h);
+  overflow-x: hidden;
+}
+img, video, svg { display: block; max-width: 100%; }
+a { color: inherit; }
+button { font: inherit; color: inherit; cursor: pointer; }
+h1, h2, h3 { font-family: var(--font-display); color: var(--reign); line-height: 1.1; margin: 0; font-weight: 700; }
+p { margin: 0; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 4px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.skip { position: absolute; left: 12px; top: -60px; z-index: 100; background: var(--reign); color: var(--on-reign); padding: 10px 14px; border-radius: 8px; font-weight: 600; }
+.skip:focus { top: 12px; }
+
+.pixel { image-rendering: pixelated; }
+.wrap { width: 100%; max-width: var(--max); margin-inline: auto; padding-inline: var(--gutter); }
+.section { padding-block: clamp(64px, 11vw, 120px); position: relative; }
+
+/* ---------- Type helpers ---------- */
+.eyebrow {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  line-height: 1.8;
+  text-transform: uppercase;
+  color: var(--reign);
+  margin: 0 0 14px;
+}
+@media (min-width: 720px) { .eyebrow { font-size: 11px; } }
+.h2 { font-size: clamp(1.75rem, 6vw, 2.75rem); font-weight: 700; letter-spacing: -0.01em; }
+.hand { font-family: var(--font-hand); font-weight: 500; font-size: 1.5rem; line-height: 1.2; color: var(--reign); }
+.caps { text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.75rem; font-weight: 600; }
+.section-head { margin-bottom: clamp(28px, 5vw, 44px); }
+.section-head .hand { margin-top: 10px; }
+.sample-tag {
+  display: inline-block; margin-left: 10px; vertical-align: middle;
+  font: 600 0.6875rem/1 var(--font-body); letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 5px 8px; border: 1px dashed var(--muted); color: var(--muted); border-radius: 999px;
+}
+
+/* ---------- Tri-stripe ---------- */
+.tri {
+  height: 12px;
+  background: linear-gradient(var(--teal) 0 4px, var(--red) 4px 8px, var(--orange) 8px 12px);
+}
+.tri-divider { max-width: var(--max); margin: 0 auto; transform-origin: left; }
+.js .tri-divider { transform: scaleX(0); transition: transform 600ms var(--ease); }
+.js .tri-divider.in { transform: scaleX(1); }
+
+/* ---------- Frames ---------- */
+.frame {
+  border: 2px solid var(--reign);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: 6px 7px 0 var(--shadow);
+  transform: rotate(var(--tilt, -1.5deg));
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 48px; padding: 12px 22px;
+  border-radius: 999px; border: 2px solid var(--reign);
+  font: 600 1rem/1 var(--font-body); text-decoration: none;
+  transition: transform 160ms var(--ease), background-color 160ms, color 160ms, box-shadow 160ms;
+}
+.btn-primary { background: var(--reign); color: var(--on-reign); box-shadow: 4px 4px 0 var(--shadow); }
+.btn-ghost { background: transparent; color: var(--reign); }
+.btn:hover { transform: translateY(-2px); }
+.btn-ghost:hover { background: color-mix(in srgb, var(--teal) 18%, transparent); }
+.btn .pixel { width: 12px; height: 12px; }
+
+/* ---------- Entrance ---------- */
+.js .reveal { opacity: 0; transform: translateY(16px); transition: opacity 500ms var(--ease), transform 500ms var(--ease); }
+.js .reveal.in { opacity: 1; transform: none; }
+
+/* ---------- Pills ---------- */
+.pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 16px; min-height: 44px;
+  border-radius: 999px; border: 2px solid var(--reign);
+  background: var(--surface); color: var(--ink);
+  font-size: 0.9375rem; font-weight: 500;
+}
+
+/* ---------- Theme crossfade ---------- */
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 200ms; }
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  .js .reveal { opacity: 1; transform: none; }
+  .js .tri-divider { transform: none; }
+}

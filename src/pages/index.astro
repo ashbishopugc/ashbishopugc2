@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Stats from '../components/Stats.astro';
+import Work from '../components/Work.astro';
+import Brands from '../components/Brands.astro';
+import Process from '../components/Process.astro';
+import Contact from '../components/Contact.astro';
+import Track from '../components/Track.astro';
+import Lightbox from '../components/Lightbox.astro';
+---
+<Base>
+  <Header />
+  <main id="main">
+    <Hero />
+    <div class="tri tri-divider" aria-hidden="true" data-stripe></div>
+    <About />
+    <Stats />
+    <div class="tri tri-divider" aria-hidden="true" data-stripe></div>
+    <Work />
+    <Brands />
+    <Process />
+    <div class="tri tri-divider" aria-hidden="true" data-stripe></div>
+    <Contact />
+  </main>
+  <Track />
+  <Lightbox />
+</Base>
+
+<script>
+  import '../scripts/main.ts';
+</script>

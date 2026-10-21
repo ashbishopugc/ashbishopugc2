@@ -1,0 +1,37 @@
+---
+import type { Sprite } from '../lib/sprites';
+
+interface Props {
+  sprite: Sprite;
+  class?: string;
+  label?: string;
+  style?: string;
+}
+const { sprite, class: cls, label, style } = Astro.props;
+const w = Math.max(...sprite.rows.map((r) => r.length));
+const h = sprite.rows.length;
+
+// Merge horizontal runs of the same colour into one rect each.
+const rects: { x: number; y: number; w: number; fill: string }[] = [];
+sprite.rows.forEach((row, y) => {
+  let x = 0;
+  while (x < row.length) {
+    const fill = sprite.palette[row[x]];
+    if (!fill) { x++; continue; }
+    let end = x;
+    while (end < row.length && row[end] === row[x]) end++;
+    rects.push({ x, y, w: end - x, fill });
+    x = end;
+  }
+});
+---
+<svg
+  class:list={['pixel', cls]}
+  style={style}
+  viewBox={`0 0 ${w} ${h}`}
+  shape-rendering="crispEdges"
+  focusable="false"
+  role={label ? 'img' : undefined}
+  aria-label={label}
+  aria-hidden={label ? undefined : 'true'}
+>{rects.map((r) => <rect x={r.x} y={r.y} width={r.w} height="1" fill={r.fill} />)}</svg>

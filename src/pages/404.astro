@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import Pixel from '../components/Pixel.astro';
+import { truck } from '../lib/sprites';
+---
+<Base title="Game over | Ash Bishop" noindex>
+  <main id="main" class="lost">
+    <Pixel sprite={truck} class="lost-truck" />
+    <p class="eyebrow">— Game over —</p>
+    <h1>This page took a wrong turn.</h1>
+    <p class="hand">Continue?</p>
+    <a class="btn btn-primary" href="/">Back to the start</a>
+  </main>
+</Base>
+
+<style>
+  :global(body) { padding-bottom: 0; }
+  .lost { min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 24px; text-align: center; }
+  .lost :global(.lost-truck) { width: 96px; margin-bottom: 12px; }
+  h1 { font-size: clamp(1.6rem, 6vw, 2.5rem); }
+  .lost .eyebrow { margin: 0; }
+</style>

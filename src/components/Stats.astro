@@ -1,0 +1,73 @@
+---
+import Pixel from './Pixel.astro';
+import SectionHead from './SectionHead.astro';
+import { site } from '../lib/data';
+import { icons } from '../lib/sprites';
+
+const { stats, work } = site;
+const metrics = [
+  { key: 'views', label: 'Views', icon: icons.eye },
+  { key: 'likes', label: 'Likes', icon: icons.heart },
+  { key: 'comments', label: 'Comments', icon: icons.comment },
+  { key: 'shares', label: 'Shares', icon: icons.share },
+  { key: 'saves', label: 'Saves', icon: icons.save },
+] as const;
+
+const compact = (n: number) =>
+  new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(n);
+const brandOf = (id: string) => work.videos.find((v) => v.id === id)?.brand ?? '';
+---
+<section id="stats" class="section" aria-labelledby="stats-h">
+  <div class="wrap">
+    <SectionHead eyebrow="Level 2 · High scores" heading={stats.heading} id="stats-h" sample={stats.sampleNote || undefined} />
+    <ol class="board">
+      {stats.rows.map((row, i) => (
+        <li class="row reveal">
+            <span class="rank" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <span class="title">
+              <span class="label">{row.label}</span>
+              <span class="caps brand">{brandOf(row.video)}</span>
+            </span>
+            <dl class="metrics" data-countup>
+              {metrics.map((m) => (
+                <div class="metric">
+                  <dt><Pixel sprite={m.icon} /><span>{m.label}</span></dt>
+                  <dd data-value={row[m.key]}>{compact(row[m.key])}</dd>
+                </div>
+              ))}
+            </dl>
+            <button class="play" type="button" data-play={row.video} aria-label={`Play ${row.label} for ${brandOf(row.video)}`}>
+              <Pixel sprite={icons.play} />
+            </button>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .board { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+  .row {
+    position: relative; display: grid; grid-template-columns: auto 1fr auto; gap: 12px 14px; align-items: center;
+    padding: 16px; border: 2px solid var(--reign); border-radius: 12px; background: var(--surface);
+    box-shadow: 5px 5px 0 var(--shadow); transition: transform 160ms var(--ease), box-shadow 160ms;
+  }
+  .row:hover, .row:focus-within { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--shadow); }
+  .rank { font: 400 12px/1 var(--font-pixel); color: var(--gold-text); }
+  .label { display: block; font: 700 1.0625rem/1.2 var(--font-display); color: var(--reign); }
+  .brand { display: block; margin-top: 4px; color: var(--muted); font-size: 0.6875rem; }
+  .play { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--reign); color: var(--on-reign); border: 0; grid-column: 3; grid-row: 1; }
+  .play::after { content: ''; position: absolute; inset: 0; border-radius: 12px; }
+  .play :global(.pixel) { width: 13px; margin-left: 3px; }
+  .metrics { grid-column: 1 / -1; grid-row: 2; display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin: 0; padding-top: 12px; border-top: 1px dashed var(--line); }
+  .metric { display: flex; flex-direction: column-reverse; align-items: center; gap: 4px; text-align: center; min-width: 0; }
+  dt { display: flex; flex-direction: column; align-items: center; gap: 5px; font-size: 0.6875rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  dt :global(.pixel) { height: 11px; width: auto; color: var(--reign); }
+  dd { margin: 0; font: 700 clamp(1rem, 4.4vw, 1.5rem)/1 var(--font-display); color: var(--gold-text); font-variant-numeric: tabular-nums; }
+
+  @media (min-width: 900px) {
+    .row { grid-template-columns: auto 220px 1fr auto; padding: 18px 24px; gap: 24px; }
+    .metrics { grid-column: 3; grid-row: 1; border-top: 0; padding-top: 0; }
+    .play { grid-column: 4; }
+  }
+</style>

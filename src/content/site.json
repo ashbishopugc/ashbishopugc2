@@ -1,0 +1,112 @@
+{
+  "meta": {
+    "title": "Ash Bishop | Gaming, Tech & Lifestyle UGC Creator",
+    "description": "Ash Bishop (PressStartAsh) makes UGC for gaming, tech and lifestyle brands: paid ads, organic content and UGC retainers. Florida-based, Tennessee-bound.",
+    "url": "https://ashbishopugc.com"
+  },
+
+  "name": "Ash Bishop",
+  "handle": "PressStartAsh",
+  "niche": "Gaming, Tech & Lifestyle UGC Creator",
+  "location": "Florida-based · Tennessee-bound",
+  "email": "hello@ashbishopugc.com",
+  "formEndpoint": "https://formspree.io/f/REPLACE_ME",
+  "socials": {
+    "instagram": "https://www.instagram.com/pressstartash",
+    "tiktok": "https://www.tiktok.com/@pressstartash"
+  },
+
+  "hero": {
+    "tagline": "Ready to press start?",
+    "reel": "",
+    "reelWebm": "",
+    "reelPoster": "",
+    "reelCaptions": "",
+    "primaryButton": "Watch my work",
+    "secondaryButton": "Let's talk"
+  },
+
+  "about": {
+    "heading": "Nice to meet you!",
+    "photo": "",
+    "photoAlt": "Ash Bishop smiling at the camera",
+    "photoCaption": "that's me :)",
+    "polaroid": "",
+    "polaroidAlt": "Ash's gaming setup with a glowing keyboard and two monitors",
+    "polaroidCaption": "my battle station",
+    "bio": [
+      "I'm Ash, a UGC creator for gaming, tech and lifestyle brands. I've been gaming since the cartridge days and I can't walk past a new gadget without opening the box, so I talk about your product like someone who already uses it.",
+      "I make short vertical videos for paid ads and organic posts: hooks that earn the next three seconds, honest demos and real setups. Clear brief, quick replies, files on time."
+    ],
+    "chipsIntro": "a few things about me...",
+    "chips": [
+      { "icon": "controller", "text": "gamer since the cartridge days", "aside": "" },
+      { "icon": "box", "text": "tech tester", "aside": "(always unboxing)" },
+      { "icon": "house", "text": "building a house in TN", "aside": "" },
+      { "icon": "calendar", "text": "UGC creator since 2023", "aside": "" },
+      { "icon": "pin", "text": "FL based · available nationwide", "aside": "" },
+      { "icon": "coffee", "text": "runs on iced coffee", "aside": "(it's a problem)" }
+    ]
+  },
+
+  "stats": {
+    "heading": "Recent best performing",
+    "sampleNote": "sample numbers",
+    "rows": [
+      { "video": "v1", "label": "Headset unboxing", "views": 1240000, "likes": 86300, "comments": 2140, "shares": 5120, "saves": 9870 },
+      { "video": "v2", "label": "Desk setup tour", "views": 812000, "likes": 54900, "comments": 1380, "shares": 3410, "saves": 12600 },
+      { "video": "v3", "label": "Morning routine", "views": 498000, "likes": 31200, "comments": 960, "shares": 1870, "saves": 4450 },
+      { "video": "v4", "label": "Controller review", "views": 356000, "likes": 22800, "comments": 740, "shares": 1290, "saves": 3020 }
+    ]
+  },
+
+  "work": {
+    "heading": "My work",
+    "subtitle": "Available for paid ads, organic content and UGC retainers",
+    "categories": ["Gaming", "Tech", "Lifestyle"],
+    "videos": [
+      { "id": "v1", "brand": "Sample Audio Co.", "category": "Gaming", "title": "Headset unboxing", "poster": "", "video": "", "videoWebm": "", "preview": "", "captions": "" },
+      { "id": "v2", "brand": "Sample Desk Co.", "category": "Tech", "title": "Desk setup tour", "poster": "", "video": "", "videoWebm": "", "preview": "", "captions": "" },
+      { "id": "v3", "brand": "Sample Coffee Co.", "category": "Lifestyle", "title": "Morning routine", "poster": "", "video": "", "videoWebm": "", "preview": "", "captions": "" },
+      { "id": "v4", "brand": "Sample Controller Co.", "category": "Gaming", "title": "Controller review", "poster": "", "video": "", "videoWebm": "", "preview": "", "captions": "" },
+      { "id": "v5", "brand": "Sample Phone Co.", "category": "Tech", "title": "Phone camera test", "poster": "", "video": "", "videoWebm": "", "preview": "", "captions": "" },
+      { "id": "v6", "brand": "Sample Home Co.", "category": "Lifestyle", "title": "Cozy room reset", "poster": "", "video": "", "videoWebm": "", "preview": "", "captions": "" }
+    ]
+  },
+
+  "brands": {
+    "heading": "Brands I've worked with",
+    "subtitle": "brands that joined the party",
+    "rowOne": ["Sample Audio Co.", "Sample Desk Co.", "Sample Coffee Co.", "Sample Keys Co.", "Sample Light Co."],
+    "rowTwo": ["Sample Controller Co.", "Sample Phone Co.", "Sample Home Co.", "Sample Snack Co.", "Sample Chair Co."],
+    "testimonials": [
+      { "quote": "Ash got the brief straight away. The first hook beat our control ad in week one.", "brand": "Sample Audio Co.", "role": "Growth Marketing Manager" },
+      { "quote": "Fast, easy to work with, and the videos feel like real posts, not ads.", "brand": "Sample Desk Co.", "role": "Brand Partnerships Lead" },
+      { "quote": "We ordered four videos and ran all four. That never happens.", "brand": "Sample Phone Co.", "role": "Paid Social Lead" }
+    ]
+  },
+
+  "process": {
+    "heading": "How we'll work",
+    "steps": [
+      { "title": "Brief", "text": "You share the product, goals and must-haves.", "time": "" },
+      { "title": "Script", "text": "I write hooks and a script for your approval.", "time": "" },
+      { "title": "Shoot", "text": "I film and edit native-feeling content.", "time": "" },
+      { "title": "Deliver", "text": "Final files, plus revisions if needed.", "time": "" }
+    ]
+  },
+
+  "contact": {
+    "heading": "Let's work together",
+    "note": "fill out the form and I'll be in touch within 48 hours",
+    "button": "PRESS START",
+    "success": "Message sent. Player 2 has joined!"
+  },
+
+  "easterEgg": {
+    "enabled": true,
+    "toast": "Bonus level unlocked!",
+    "blooper": "",
+    "blooperPoster": ""
+  }
+}

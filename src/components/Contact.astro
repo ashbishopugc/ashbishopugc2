@@ -1,0 +1,112 @@
+---
+import Pixel from './Pixel.astro';
+import Icon from './Icon.astro';
+import SectionHead from './SectionHead.astro';
+import { site } from '../lib/data';
+import { star } from '../lib/sprites';
+
+const { contact } = site;
+const year = new Date().getFullYear();
+---
+<section id="contact" class="section" aria-labelledby="contact-h">
+  <div class="wrap narrow">
+    <SectionHead eyebrow="Continue?" heading={contact.heading} id="contact-h" note={contact.note} />
+
+    <form class="form reveal" action={site.formEndpoint} method="POST" novalidate data-contact data-email={site.email}>
+      <div class="field">
+        <label for="f-name">Name <span class="req" aria-hidden="true">*</span></label>
+        <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="e-name" />
+        <p class="err" id="e-name" data-err></p>
+      </div>
+      <div class="field">
+        <label for="f-email">Email <span class="req" aria-hidden="true">*</span></label>
+        <input id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="e-email" />
+        <p class="err" id="e-email" data-err></p>
+      </div>
+      <div class="field">
+        <label for="f-brand">Brand / Company</label>
+        <input id="f-brand" name="brand" type="text" autocomplete="organization" />
+      </div>
+      <div class="field">
+        <label for="f-message">Message <span class="req" aria-hidden="true">*</span></label>
+        <textarea id="f-message" name="message" rows="4" required aria-describedby="e-message"></textarea>
+        <p class="err" id="e-message" data-err></p>
+      </div>
+      <div class="hp" aria-hidden="true">
+        <label for="f-gotcha">Leave this empty</label>
+        <input id="f-gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+      <p class="req-note"><span class="req" aria-hidden="true">*</span> required</p>
+      <button class="submit" type="submit" data-submit>{contact.button}</button>
+      <p class="status" role="status" data-status></p>
+    </form>
+
+    <div class="success" data-success hidden tabindex="-1">
+      <Pixel sprite={star} />
+      <p class="win">{contact.success}</p>
+      <p class="hand">talk soon :)</p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="tri" aria-hidden="true"></div>
+  <div class="wrap foot">
+    <p>© {year} {site.name}</p>
+    <div class="links">
+      <a href={site.socials.instagram} rel="me noopener" target="_blank" aria-label="Instagram (opens in a new tab)"><Icon name="instagram" size={22} /></a>
+      <a href={site.socials.tiktok} rel="me noopener" target="_blank" aria-label="TikTok (opens in a new tab)"><Icon name="tiktok" size={22} /></a>
+      <a class="mail" href={`mailto:${site.email}`}>{site.email}</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .narrow { max-width: 720px; }
+  .form { display: grid; gap: 26px; }
+  .field { display: grid; gap: 4px; }
+  label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--reign); }
+  .req { color: var(--red-text); }
+  input, textarea {
+    width: 100%; font: 400 1.0625rem/1.5 var(--font-body); color: var(--ink);
+    background: transparent; border: 0; border-bottom: 2px solid var(--reign); border-radius: 0;
+    padding: 10px 2px; transition: border-color 160ms, background-color 160ms;
+  }
+  textarea { resize: vertical; min-height: 120px; }
+  input:focus, textarea:focus { outline: none; border-bottom-color: var(--focus); background: color-mix(in srgb, var(--teal) 8%, transparent); }
+  input:focus-visible, textarea:focus-visible { box-shadow: 0 2px 0 var(--focus); }
+  [aria-invalid='true'] { border-bottom-color: var(--red-text); }
+  .err { min-height: 0; color: var(--red-text); font-size: 0.875rem; }
+  .err:empty { display: none; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .req-note { font-size: 0.875rem; color: var(--muted); margin-top: -10px; }
+
+  .submit {
+    position: relative; justify-self: start; min-height: 56px; padding: 0 28px;
+    font: 400 13px/1 var(--font-pixel); letter-spacing: 0.14em;
+    background: var(--reign); color: var(--on-reign); border: 2px solid var(--reign);
+    box-shadow: 5px 5px 0 var(--shadow); transition: transform 160ms var(--ease);
+  }
+  .submit::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: -14px; height: 9px;
+    background: linear-gradient(var(--teal) 0 3px, var(--red) 3px 6px, var(--orange) 6px 9px);
+    transform: scaleX(0); transform-origin: left; transition: transform 300ms var(--ease);
+  }
+  .submit:hover { transform: translateY(-2px); }
+  .submit:hover::after, .submit:focus-visible::after { transform: scaleX(1); }
+  .submit[disabled] { opacity: 0.7; cursor: progress; }
+  .status { font-size: 0.9375rem; }
+  .status :global(a) { color: var(--reign); font-weight: 600; }
+
+  .success { text-align: center; padding: 40px 20px; border: 2px solid var(--reign); border-radius: 12px; background: var(--surface); box-shadow: 6px 6px 0 var(--shadow); }
+  .success:focus { outline: none; }
+  .success :global(.pixel) { width: 36px; margin: 0 auto 16px; color: var(--gold); animation: spin 1s steps(4) 2; }
+  .win { font: 700 clamp(1.25rem, 5vw, 1.75rem)/1.25 var(--font-display); color: var(--reign); }
+  @keyframes spin { 50% { transform: scale(1.3); } }
+
+  .footer { margin-top: 24px; }
+  .foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding-block: 28px; font-size: 0.9375rem; }
+  .links { display: flex; align-items: center; gap: 8px; }
+  .links a { display: grid; place-items: center; min-width: 44px; min-height: 44px; color: var(--reign); }
+  .links .mail { padding-inline: 6px; font-weight: 600; }
+</style>

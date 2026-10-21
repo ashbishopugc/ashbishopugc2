@@ -1,0 +1,95 @@
+---
+import Pixel from './Pixel.astro';
+import SectionHead from './SectionHead.astro';
+import { site } from '../lib/data';
+import { icons } from '../lib/sprites';
+
+const { work } = site;
+const tilts = ['-1.5deg', '1.2deg', '-1deg', '1.8deg', '-1.8deg', '1deg'];
+const hasRealVideos = work.videos.some((v) => v.video);
+---
+<section id="work" class="section" aria-labelledby="work-h">
+  <div class="wrap">
+    <SectionHead
+      eyebrow="Level 3 · Top plays"
+      heading={work.heading}
+      id="work-h"
+      note={work.subtitle}
+      sample={hasRealVideos ? undefined : 'sample videos'}
+    />
+
+    <div class="filters reveal" role="group" aria-label="Filter videos by category">
+      {['All', ...work.categories].map((c, i) => (
+        <button class="pill filter" type="button" data-filter={c} aria-pressed={i === 0 ? 'true' : 'false'}>{c}</button>
+      ))}
+    </div>
+
+    <ul class="grid" data-grid>
+      {work.videos.map((v, i) => (
+        <li class="card-li reveal" data-category={v.category}>
+          <button class="card frame" type="button" style={`--tilt:${tilts[i % tilts.length]}`} data-play={v.id} aria-label={`Play ${v.title} for ${v.brand}`}>
+            <span class="media">
+              {v.poster ? (
+                <img src={v.poster} alt="" width="360" height="640" loading="lazy" decoding="async" />
+              ) : (
+                <span class={`ph ph-${v.category.toLowerCase()}`} aria-hidden="true"><span>{v.title}</span></span>
+              )}
+              {(v.preview || v.video) && (
+                <video class="preview" muted loop playsinline preload="none" data-preview aria-hidden="true">
+                  <source src={v.preview || v.video} type="video/mp4" />
+                </video>
+              )}
+              <span class="play-badge" aria-hidden="true"><Pixel sprite={icons.play} /></span>
+            </span>
+            <span class="meta">
+              <span class="brand">{v.brand}</span>
+              <span class="caps cat">{v.category}</span>
+            </span>
+          </button>
+        </li>
+      ))}
+    </ul>
+    <p class="empty" data-empty hidden>No videos in this category yet.</p>
+  </div>
+</section>
+
+<style>
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+  .filter { cursor: pointer; transition: background-color 160ms, color 160ms; }
+  .filter:hover { background: color-mix(in srgb, var(--teal) 20%, var(--surface)); }
+  .filter[aria-pressed='true'] { background: var(--reign); color: var(--on-reign); }
+
+  .grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 18px; }
+  @media (min-width: 900px) { .grid { grid-template-columns: repeat(3, 1fr); gap: 44px 36px; } }
+  .card-li[hidden] { display: none; }
+
+  .card {
+    width: 100%; padding: 6px 6px 12px; text-align: left; display: flex; flex-direction: column; gap: 10px;
+    transition: transform 220ms var(--ease), box-shadow 220ms;
+  }
+  @media (hover: hover) {
+    .card:hover { transform: rotate(0) translateY(-4px); box-shadow: 8px 10px 0 var(--shadow); }
+  }
+  .card:focus-visible { transform: rotate(0) translateY(-4px); }
+  .media { position: relative; display: block; aspect-ratio: 9 / 16; overflow: hidden; border-radius: 6px; background: #2B1B47; }
+  .media img, .preview { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .preview { opacity: 0; transition: opacity 200ms; }
+  .preview.on { opacity: 1; }
+  .ph {
+    position: absolute; inset: 0; display: flex; align-items: flex-end; padding: 14px;
+    font: 700 clamp(0.95rem, 3.6vw, 1.25rem)/1.15 var(--font-display); color: #F6F0E6;
+  }
+  .ph-gaming { background: linear-gradient(165deg, #24B8A8 -10%, #3D1F63 55%, #15101F); }
+  .ph-tech { background: linear-gradient(165deg, #F39A3D -10%, #3D1F63 55%, #15101F); }
+  .ph-lifestyle { background: linear-gradient(165deg, #E2453C -10%, #3D1F63 55%, #15101F); }
+  .play-badge {
+    position: absolute; left: 50%; top: 45%; transform: translate(-50%, -50%);
+    width: 52px; height: 52px; display: grid; place-items: center;
+    background: #F6F0E6; color: #3D1F63; border: 2px solid #15101F; box-shadow: 3px 3px 0 #15101F;
+  }
+  .play-badge :global(.pixel) { width: 16px; margin-left: 3px; }
+  .meta { padding: 0 6px; display: grid; gap: 4px; }
+  .brand { font: 700 clamp(0.9rem, 3.4vw, 1.0625rem)/1.2 var(--font-display); color: var(--reign); }
+  .cat { color: var(--muted); font-size: 0.6875rem; }
+  .empty { margin-top: 16px; color: var(--muted); }
+</style>

@@ -1,0 +1,9 @@
+---
+interface Props { eyebrow: string; heading: string; id: string; note?: string; sample?: string }
+const { eyebrow, heading, id, note, sample } = Astro.props;
+---
+<div class="section-head reveal">
+  <p class="eyebrow">— {eyebrow} —</p>
+  <h2 class="h2" id={id}>{heading}{sample && <span class="sample-tag">{sample}</span>}</h2>
+  {note && <p class="hand">{note}</p>}
+</div>

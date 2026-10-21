@@ -1,0 +1,89 @@
+---
+import Pixel from './Pixel.astro';
+import SectionHead from './SectionHead.astro';
+import { site } from '../lib/data';
+import { star, icons } from '../lib/sprites';
+
+const { brands } = site;
+const isSample = [...brands.rowOne, ...brands.rowTwo].some((b) => b.startsWith('Sample'));
+const rows = [brands.rowOne, brands.rowTwo];
+---
+<section id="brands" class="section" aria-labelledby="brands-h">
+  <div class="wrap">
+    <SectionHead eyebrow="Level 4 · The party" heading={brands.heading} id="brands-h" note={brands.subtitle} sample={isSample ? 'sample brands' : undefined} />
+  </div>
+
+  <ul class="sr-only">
+    {rows.flat().map((b) => <li>{b}</li>)}
+  </ul>
+  <div class="marquees reveal" aria-hidden="true">
+    {rows.map((row, r) => (
+      <div class={`marquee ${r ? 'rev' : ''}`}>
+        <div class="track">
+          {[0, 1].map(() => (
+            <div class="set">
+              {row.map((b) => (<><span class="b">{b}</span><Pixel sprite={star} class="sep" /></>))}
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="tri tri-divider" aria-hidden="true" data-stripe></div>
+
+  <div class="wrap">
+    <div class="carousel reveal" data-carousel aria-roledescription="carousel" aria-label="Testimonials">
+      <Pixel sprite={icons.quote} class="qmark" />
+      <div class="slides" aria-live="polite">
+        {brands.testimonials.map((t, i) => (
+          <figure class="slide" data-slide hidden={i !== 0} aria-roledescription="slide" aria-label={`${i + 1} of ${brands.testimonials.length}`}>
+            <blockquote>{t.quote}</blockquote>
+            <figcaption>
+              <span class="caps who">{t.brand}</span>
+              <span class="role">{t.role}</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+      <div class="dots" role="group" aria-label="Choose testimonial">
+        {brands.testimonials.map((_, i) => (
+          <button type="button" class="dot" data-dot={i} aria-label={`Show testimonial ${i + 1}`} aria-current={i === 0 ? 'true' : undefined}></button>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .marquees { display: grid; gap: 14px; overflow: hidden; padding-block: 8px 48px; }
+  .marquee { overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+  .track { display: flex; width: max-content; animation: slide 36s linear infinite; }
+  .rev .track { animation-direction: reverse; }
+  .marquees:hover .track, .marquees:focus-within .track { animation-play-state: paused; }
+  .set { display: flex; align-items: center; gap: 28px; padding-right: 28px; }
+  .b { font: 700 clamp(1.25rem, 4.4vw, 2rem)/1.2 var(--font-display); color: var(--reign); white-space: nowrap; }
+  .rev .b { color: transparent; -webkit-text-stroke: 1.5px var(--reign); }
+  .marquees :global(.sep) { width: 14px; color: var(--gold); flex: none; }
+  @keyframes slide { to { transform: translateX(-50%); } }
+
+  .carousel { position: relative; max-width: 760px; margin: 56px auto 0; text-align: center; }
+  .carousel :global(.qmark) { width: 44px; margin: 0 auto 18px; color: var(--gold); }
+  blockquote {
+    margin: 0; font: italic 600 clamp(1.25rem, 4.6vw, 1.9rem)/1.35 var(--font-display); color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .slide { margin: 0; }
+  .slide:not([hidden]) { animation: fade 400ms var(--ease); }
+  @keyframes fade { from { opacity: 0; transform: translateY(8px); } }
+  figcaption { margin-top: 22px; display: grid; gap: 6px; justify-items: center; }
+  .who {
+    color: var(--reign); padding-bottom: 6px; font-size: 0.8125rem;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 8' preserveAspectRatio='none'%3E%3Cpath d='M2 5c20-3 40-3 60-1s28 1 36-2' fill='none' stroke='%23F39A3D' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") bottom / 100% 8px no-repeat;
+  }
+  .role { color: var(--muted); font-size: 0.9375rem; }
+  .dots { display: flex; justify-content: center; gap: 4px; margin-top: 26px; }
+  .dot { width: 32px; height: 32px; border: 0; background: none; padding: 0; display: grid; place-items: center; }
+  .dot::before { content: ''; width: 12px; height: 12px; border: 2px solid var(--reign); background: transparent; }
+  .dot[aria-current='true']::before { background: var(--reign); }
+</style>

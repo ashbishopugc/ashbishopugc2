@@ -1,0 +1,75 @@
+---
+import Pixel from './Pixel.astro';
+import { sections } from '../lib/data';
+import { truck, palm, hills, house } from '../lib/sprites';
+---
+<nav class="track" aria-label="Page progress" data-track>
+  <Pixel sprite={palm} class="t-palm" />
+  <div class="rail" data-rail>
+    <div class="dirt" aria-hidden="true"></div>
+    <ol class="stops">
+      {sections.map((s, i) => (
+        <li style={`left:${(i / (sections.length - 1)) * 100}%`}>
+          <a href={`#${s.id}`} class="stop" data-stop={s.id} aria-label={s.menu}>
+            <span class="label" aria-hidden="true">{s.stop}</span>
+          </a>
+        </li>
+      ))}
+    </ol>
+    <div class="truck" data-truck aria-hidden="true"><Pixel sprite={truck} /></div>
+  </div>
+  <div class="t-end" aria-hidden="true">
+    <Pixel sprite={hills} class="t-hills" />
+    <Pixel sprite={house} class="t-house" />
+  </div>
+</nav>
+
+<style>
+  .track {
+    position: fixed; inset: auto 0 0; z-index: 30; height: var(--track-h);
+    display: flex; align-items: flex-end; gap: 10px;
+    padding: 0 max(12px, env(safe-area-inset-right)) 8px max(12px, env(safe-area-inset-left));
+    background: color-mix(in srgb, var(--bg) 94%, transparent);
+    border-top: 2px solid var(--reign);
+    transition: transform 220ms var(--ease);
+  }
+  :global(body.form-focus) .track, :global(body.menu-open) .track { transform: translateY(110%); }
+  .track :global(.t-palm) { width: 20px; flex: none; margin-bottom: 2px; }
+  .t-end { position: relative; flex: none; width: 46px; height: 24px; color: var(--reign); }
+  .t-end :global(.t-hills) { position: absolute; bottom: 2px; left: 0; width: 46px; opacity: 0.45; }
+  .t-end :global(.t-house) { position: absolute; bottom: 2px; right: 6px; width: 16px; }
+
+  .rail { position: relative; flex: 1; height: 100%; margin-inline: 14px; }
+  .dirt {
+    position: absolute; left: -10px; right: -10px; bottom: 4px; height: 4px;
+    background: repeating-linear-gradient(90deg, color-mix(in srgb, var(--reign) 55%, transparent) 0 6px, transparent 6px 10px);
+  }
+  .stops { list-style: none; margin: 0; padding: 0; }
+  .stops li { position: absolute; bottom: 0; transform: translateX(-50%); }
+  .stop { display: grid; place-items: end center; width: 36px; height: 40px; padding-bottom: 2px; text-decoration: none; }
+  .stop::after {
+    content: ''; width: 10px; height: 10px; background: var(--bg); border: 2px solid var(--reign);
+    transition: background-color 160ms;
+  }
+  .stop.current::after, .stop:hover::after { background: var(--reign); }
+  .label {
+    position: absolute; bottom: 34px; left: 50%; transform: translateX(-50%);
+    font: 400 10px/1 var(--font-pixel); letter-spacing: 0.06em; color: var(--reign); white-space: nowrap;
+    opacity: 0; transition: opacity 160ms;
+  }
+  .stops li:first-child .label { left: -4px; transform: none; }
+  .stops li:last-child .label { left: auto; right: -4px; transform: none; }
+  .stop.current .label { opacity: 1; }
+  .stop:focus-visible .label { opacity: 1; }
+
+  .truck { position: absolute; left: 0; bottom: 8px; width: 34px; margin-left: -17px; pointer-events: none; will-change: transform; }
+  .truck :global(.pixel) { width: 100%; height: auto; }
+  :global(.truck-bounce) .truck :global(.pixel) { animation: rumble 260ms steps(2) infinite; }
+  @keyframes rumble { 50% { transform: translateY(-1px); } }
+
+  @media (min-width: 720px) {
+    .track :global(.t-palm) { width: 24px; }
+    .rail { margin-inline: 24px; }
+    .truck { width: 40px; margin-left: -20px; }
+  }
+</style>

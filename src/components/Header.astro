@@ -1,0 +1,78 @@
+---
+import Icon from './Icon.astro';
+import { site, sections } from '../lib/data';
+---
+<header class="site-header" data-header>
+  <div class="bar wrap">
+    <a class="logo" href="#home">{site.name}</a>
+    <div class="actions">
+      <button class="round" type="button" data-theme-toggle aria-label="Switch to dark mode">
+        <Icon name="moon" size={20} class="i-moon" />
+        <Icon name="sun" size={20} class="i-sun" />
+      </button>
+      <a class="round" href="#contact" aria-label="Email Ash: go to the contact form"><Icon name="mail" size={20} /></a>
+      <button class="round" type="button" data-menu-open aria-expanded="false" aria-controls="menu" aria-label="Open menu">
+        <Icon name="menu" size={20} />
+      </button>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"><div class="tri" data-progress></div></div>
+</header>
+
+<div class="menu" id="menu" data-menu hidden>
+  <div class="menu-inner wrap">
+    <div class="menu-top">
+      <p class="eyebrow">— Level select —</p>
+      <button class="round" type="button" data-menu-close aria-label="Close menu"><Icon name="close" size={20} /></button>
+    </div>
+    <nav aria-label="Sections">
+      <ol>
+        {sections.map((s, i) => (
+          <li><a href={`#${s.id}`} data-menu-link><span class="num" aria-hidden="true">{String(i).padStart(2, '0')}</span>{s.menu}</a></li>
+        ))}
+      </ol>
+    </nav>
+    <p class="hand">{site.hero.tagline}</p>
+  </div>
+  <div class="tri" aria-hidden="true"></div>
+</div>
+
+<style>
+  .site-header { position: fixed; inset: 0 0 auto; z-index: 40; height: var(--header-h); transition: background-color 200ms; }
+  .site-header.scrolled { background: var(--bg); }
+  .bar { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .logo { font: 700 1.0625rem/1 var(--font-display); color: var(--reign); text-decoration: none; letter-spacing: -0.01em; }
+  .actions { display: flex; gap: 8px; }
+  .round {
+    width: 44px; height: 44px; display: grid; place-items: center;
+    border-radius: 50%; border: 2px solid var(--reign); background: var(--surface); color: var(--reign);
+    text-decoration: none; transition: background-color 160ms, transform 160ms;
+  }
+  .round:hover { background: color-mix(in srgb, var(--teal) 22%, var(--surface)); }
+  :global([data-theme='dark'] .i-moon), :global([data-theme='light'] .i-sun) { display: none; }
+
+  .progress { position: absolute; inset: auto 0 0; height: 6px; opacity: 0; transition: opacity 200ms; }
+  .site-header.scrolled .progress { opacity: 1; }
+  .progress::before { content: ''; position: absolute; inset: 0; background: var(--line); }
+  .progress .tri {
+    position: absolute; inset: 0; height: 6px; transform-origin: left; transform: scaleX(var(--p, 0));
+    background: linear-gradient(var(--teal) 0 2px, var(--red) 2px 4px, var(--orange) 4px 6px);
+  }
+
+  .menu { position: fixed; inset: 0; z-index: 60; background: var(--bg); overflow-y: auto; display: flex; flex-direction: column; }
+  .menu[hidden] { display: none; }
+  .menu-inner { flex: 1; display: flex; flex-direction: column; padding-block: 12px 32px; }
+  .menu-top { display: flex; align-items: center; justify-content: space-between; height: calc(var(--header-h) - 12px); }
+  .menu-top .eyebrow { margin: 0; }
+  .menu ol { list-style: none; margin: 24px 0; padding: 0; }
+  .menu li a {
+    display: flex; align-items: baseline; gap: 16px; padding: 10px 0;
+    font: 700 clamp(1.75rem, 8vw, 3rem)/1.1 var(--font-display); color: var(--reign); text-decoration: none;
+    border-bottom: 1px solid var(--line);
+  }
+  .menu li a:hover { color: var(--ink); }
+  .num { font: 400 10px/1 var(--font-pixel); color: var(--gold-text); min-width: 2.5em; }
+  .menu .hand { margin-top: auto; }
+  .js .menu:not([hidden]) { animation: menu-in 260ms var(--ease); }
+  @keyframes menu-in { from { opacity: 0; transform: translateY(-12px); } }
+</style>

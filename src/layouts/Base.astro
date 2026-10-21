@@ -1,0 +1,69 @@
+---
+import '@fontsource-variable/unbounded/wght.css';
+import '@fontsource-variable/dm-sans/wght.css';
+import '@fontsource/caveat/latin-500.css';
+import '@fontsource/press-start-2p/latin-400.css';
+import '../styles/global.css';
+import unboundedUrl from '@fontsource-variable/unbounded/files/unbounded-latin-wght-normal.woff2?url';
+import { site } from '../lib/data';
+
+interface Props { title?: string; description?: string; noindex?: boolean }
+const { title = site.meta.title, description = site.meta.description, noindex = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const og = new URL('/og.png', Astro.site).href;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  alternateName: site.handle,
+  jobTitle: site.niche,
+  url: site.meta.url,
+  email: `mailto:${site.email}`,
+  sameAs: Object.values(site.socials),
+};
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta name="theme-color" content="#F6F0E6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#15101F" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={og} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={og} />
+
+    <link rel="preload" href={unboundedUrl} as="font" type="font/woff2" crossorigin />
+
+    <script is:inline>
+      // Before first paint: saved theme or the system's, plus first-visit flag for the rewind intro.
+      (function () {
+        var d = document.documentElement, t, seen;
+        try { t = localStorage.getItem('theme'); seen = localStorage.getItem('rewound'); } catch (e) { seen = '1'; }
+        if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        d.dataset.theme = t;
+        d.classList.add('js');
+        if (!seen && !matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('rewind');
+      })();
+    </script>
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <slot />
+  </body>
+</html>

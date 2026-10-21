@@ -1,0 +1,85 @@
+---
+import Icon, { type IconName } from './Icon.astro';
+import Pixel from './Pixel.astro';
+import SectionHead from './SectionHead.astro';
+import { site } from '../lib/data';
+import { star } from '../lib/sprites';
+
+const { about } = site;
+---
+<section id="about" class="section" aria-labelledby="about-h">
+  <div class="wrap about-grid">
+    <div class="photos reveal">
+      <figure class="main-photo">
+        <div class="frame photo-frame">
+          {about.photo ? (
+            <img src={about.photo} alt={about.photoAlt} width="600" height="750" loading="lazy" decoding="async" />
+          ) : (
+            <div class="photo-ph" role="img" aria-label="Photo of Ash coming soon">
+              <span class="ph-initials" aria-hidden="true">AB</span>
+              <span class="eyebrow">Photo soon</span>
+            </div>
+          )}
+        </div>
+        <figcaption class="hand cap">{about.photoCaption} <span aria-hidden="true">↙</span></figcaption>
+      </figure>
+      <figure class="polaroid">
+        <div class="frame pol-frame">
+          {about.polaroid ? (
+            <img src={about.polaroid} alt={about.polaroidAlt} width="300" height="300" loading="lazy" decoding="async" />
+          ) : (
+            <div class="pol-ph" role="img" aria-label="Photo of Ash's gaming setup coming soon"><Pixel sprite={star} /></div>
+          )}
+          <figcaption class="hand">{about.polaroidCaption}</figcaption>
+        </div>
+      </figure>
+    </div>
+
+    <div class="text">
+      <SectionHead eyebrow="Level 1 · Player profile" heading={about.heading} id="about-h" />
+      <div class="bio reveal">
+        {about.bio.map((p) => <p>{p}</p>)}
+      </div>
+      <p class="hand intro reveal">{about.chipsIntro}</p>
+      <ul class="chips reveal">
+        {about.chips.map((c) => (
+          <li class="pill">
+            <Icon name={c.icon as IconName} size={20} />
+            <span>{c.text}</span>
+            {c.aside && <span class="hand aside">{c.aside}</span>}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-grid { display: grid; gap: 56px; }
+  @media (min-width: 900px) { .about-grid { grid-template-columns: 0.9fr 1.1fr; align-items: center; gap: 72px; } }
+
+  .photos { position: relative; max-width: 420px; width: 100%; margin-inline: auto; padding: 0 12% 40px 0; }
+  figure { margin: 0; }
+  .photo-frame { --tilt: -2deg; overflow: hidden; padding: 8px; }
+  .photo-frame img, .photo-ph { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 6px; }
+  .photo-ph {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+    background: linear-gradient(160deg, #6B3FA0, #3D1F63 60%, #15101F);
+  }
+  .ph-initials { font: 400 clamp(3rem, 16vw, 5rem)/1 var(--font-pixel); color: #D9B856; text-shadow: 4px 4px 0 #15101F; }
+  .photo-ph .eyebrow { color: #F6F0E6; margin: 0; }
+  .cap { position: absolute; left: 4%; bottom: 0; transform: rotate(-4deg); font-size: 1.6rem; }
+
+  .polaroid { position: absolute; right: 0; bottom: 18%; width: 44%; }
+  .pol-frame { --tilt: 5deg; padding: 7px 7px 4px; border-radius: 4px; }
+  .pol-frame img, .pol-ph { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 2px; }
+  .pol-ph { display: grid; place-items: center; background: linear-gradient(135deg, #24B8A8, #3D1F63); color: #D9B856; }
+  .pol-ph :global(.pixel) { width: 30%; }
+  .pol-frame figcaption { text-align: center; font-size: 1.15rem; padding-top: 2px; }
+
+  .bio { display: grid; gap: 14px; max-width: 60ch; }
+  .intro { margin: 28px 0 14px; font-size: 1.6rem; }
+  .chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+  .chips :global(.icon) { color: var(--reign); flex: none; }
+  .aside { font-size: 1.15rem; color: var(--muted); }
+</style>
