@@ -53,7 +53,7 @@
     "heading": "Recent best performing",
     "sampleNote": "sample numbers",
     "rows": [
-      { "video": "v1", "label": "Headset unboxing", "views": 1240000, "likes": 86300, "comments": 2140, "shares": 5120, "saves": 9870 },
+      { "video": "v5", "label": "Phone camera test", "views": 1240000, "likes": 86300, "comments": 2140, "shares": 5120, "saves": 9870 },
       { "video": "v2", "label": "Desk setup tour", "views": 812000, "likes": 54900, "comments": 1380, "shares": 3410, "saves": 12600 },
       { "video": "v3", "label": "Morning routine", "views": 498000, "likes": 31200, "comments": 960, "shares": 1870, "saves": 4450 },
       { "video": "v4", "label": "Controller review", "views": 356000, "likes": 22800, "comments": 740, "shares": 1290, "saves": 3020 }
@@ -65,12 +65,12 @@
     "subtitle": "Available for paid ads, organic content and UGC retainers",
     "categories": ["Gaming", "Tech", "Lifestyle"],
     "videos": [
-      { "id": "v1", "brand": "Sample Audio Co.", "category": "Gaming", "title": "Headset unboxing", "poster": "", "video": "", "videoWebm": "", "preview": "", "captions": "" },
-      { "id": "v2", "brand": "Sample Desk Co.", "category": "Tech", "title": "Desk setup tour", "poster": "", "video": "", "videoWebm": "", "preview": "", "captions": "" },
-      { "id": "v3", "brand": "Sample Coffee Co.", "category": "Lifestyle", "title": "Morning routine", "poster": "", "video": "", "videoWebm": "", "preview": "", "captions": "" },
-      { "id": "v4", "brand": "Sample Controller Co.", "category": "Gaming", "title": "Controller review", "poster": "", "video": "", "videoWebm": "", "preview": "", "captions": "" },
-      { "id": "v5", "brand": "Sample Phone Co.", "category": "Tech", "title": "Phone camera test", "poster": "", "video": "", "videoWebm": "", "preview": "", "captions": "" },
-      { "id": "v6", "brand": "Sample Home Co.", "category": "Lifestyle", "title": "Cozy room reset", "poster": "", "video": "", "videoWebm": "", "preview": "", "captions": "" }
+      { "id": "logitech-a50", "brand": "Logitech", "category": "Gaming", "title": "Astro A50 headset", "tag": "Spec ad", "poster": "/media/logitech-astro-a50.webp", "video": "/media/logitech-astro-a50.mp4", "videoWebm": "/media/logitech-astro-a50.webm", "preview": "/media/logitech-astro-a50-preview.mp4", "previewWebm": "/media/logitech-astro-a50-preview.webm", "captions": "" },
+      { "id": "v2", "brand": "Sample Desk Co.", "category": "Tech", "title": "Desk setup tour", "tag": "", "poster": "", "video": "", "videoWebm": "", "preview": "", "previewWebm": "", "captions": "" },
+      { "id": "v3", "brand": "Sample Coffee Co.", "category": "Lifestyle", "title": "Morning routine", "tag": "", "poster": "", "video": "", "videoWebm": "", "preview": "", "previewWebm": "", "captions": "" },
+      { "id": "v4", "brand": "Sample Controller Co.", "category": "Gaming", "title": "Controller review", "tag": "", "poster": "", "video": "", "videoWebm": "", "preview": "", "previewWebm": "", "captions": "" },
+      { "id": "v5", "brand": "Sample Phone Co.", "category": "Tech", "title": "Phone camera test", "tag": "", "poster": "", "video": "", "videoWebm": "", "preview": "", "previewWebm": "", "captions": "" },
+      { "id": "v6", "brand": "Sample Home Co.", "category": "Lifestyle", "title": "Cozy room reset", "tag": "", "poster": "", "video": "", "videoWebm": "", "preview": "", "previewWebm": "", "captions": "" }
     ]
   },
 

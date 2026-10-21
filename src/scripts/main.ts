@@ -206,7 +206,7 @@ let opener: HTMLElement | null = null;
 
 const render = () => {
   const v = list[index];
-  lbTitle.textContent = `${v.brand} · ${v.title}`;
+  lbTitle.textContent = `${v.brand} · ${v.title}${v.tag ? ` (${v.tag})` : ''}`;
   lbCount.textContent = `${index + 1} / ${list.length}`;
   stage.replaceChildren();
   if (v.video) {
@@ -373,7 +373,7 @@ if (site.easterEgg.enabled) {
     toast.hidden = false;
     setTimeout(() => (toast.hidden = true), 3200);
     if (site.easterEgg.blooper) {
-      const blooper = { id: 'blooper', brand: site.name, category: '', title: 'Blooper reel', poster: site.easterEgg.blooperPoster, video: site.easterEgg.blooper, videoWebm: '', preview: '', captions: '' };
+      const blooper = { id: 'blooper', brand: site.name, category: '', title: 'Blooper reel', tag: '', poster: site.easterEgg.blooperPoster, video: site.easterEgg.blooper, videoWebm: '', preview: '', previewWebm: '', captions: '' };
       openVideo('blooper', document.activeElement as HTMLElement, [blooper]);
     }
   });

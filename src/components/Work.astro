@@ -6,7 +6,7 @@ import { icons } from '../lib/sprites';
 
 const { work } = site;
 const tilts = ['-1.5deg', '1.2deg', '-1deg', '1.8deg', '-1.8deg', '1deg'];
-const hasRealVideos = work.videos.some((v) => v.video);
+const hasSamples = work.videos.some((v) => !v.video);
 ---
 <section id="work" class="section" aria-labelledby="work-h">
   <div class="wrap">
@@ -15,7 +15,7 @@ const hasRealVideos = work.videos.some((v) => v.video);
       heading={work.heading}
       id="work-h"
       note={work.subtitle}
-      sample={hasRealVideos ? undefined : 'sample videos'}
+      sample={hasSamples ? 'sample videos' : undefined}
     />
 
     <div class="filters reveal" role="group" aria-label="Filter videos by category">
@@ -36,6 +36,7 @@ const hasRealVideos = work.videos.some((v) => v.video);
               )}
               {(v.preview || v.video) && (
                 <video class="preview" muted loop playsinline preload="none" data-preview aria-hidden="true">
+                  {v.previewWebm && <source src={v.previewWebm} type="video/webm" />}
                   <source src={v.preview || v.video} type="video/mp4" />
                 </video>
               )}
@@ -43,7 +44,7 @@ const hasRealVideos = work.videos.some((v) => v.video);
             </span>
             <span class="meta">
               <span class="brand">{v.brand}</span>
-              <span class="caps cat">{v.category}</span>
+              <span class="caps cat">{v.category}{v.tag && <> · <span class="tag">{v.tag}</span></>}</span>
             </span>
           </button>
         </li>
@@ -76,20 +77,21 @@ const hasRealVideos = work.videos.some((v) => v.video);
   .preview { opacity: 0; transition: opacity 200ms; }
   .preview.on { opacity: 1; }
   .ph {
-    position: absolute; inset: 0; display: flex; align-items: flex-end; padding: 14px;
+    position: absolute; inset: 0; display: flex; align-items: flex-end; padding: 14px 60px 14px 14px;
     font: 700 clamp(0.95rem, 3.6vw, 1.25rem)/1.15 var(--font-display); color: #F6F0E6;
   }
   .ph-gaming { background: linear-gradient(165deg, #24B8A8 -10%, #3D1F63 55%, #15101F); }
   .ph-tech { background: linear-gradient(165deg, #F39A3D -10%, #3D1F63 55%, #15101F); }
   .ph-lifestyle { background: linear-gradient(165deg, #E2453C -10%, #3D1F63 55%, #15101F); }
   .play-badge {
-    position: absolute; left: 50%; top: 45%; transform: translate(-50%, -50%);
-    width: 52px; height: 52px; display: grid; place-items: center;
+    position: absolute; right: 10px; bottom: 10px;
+    width: 44px; height: 44px; display: grid; place-items: center;
     background: #F6F0E6; color: #3D1F63; border: 2px solid #15101F; box-shadow: 3px 3px 0 #15101F;
   }
-  .play-badge :global(.pixel) { width: 16px; margin-left: 3px; }
+  .play-badge :global(.pixel) { width: 12px; margin-left: 2px; }
   .meta { padding: 0 6px; display: grid; gap: 4px; }
   .brand { font: 700 clamp(0.9rem, 3.4vw, 1.0625rem)/1.2 var(--font-display); color: var(--reign); }
   .cat { color: var(--muted); font-size: 0.6875rem; }
+  .tag { color: var(--reign); }
   .empty { margin-top: 16px; color: var(--muted); }
 </style>
