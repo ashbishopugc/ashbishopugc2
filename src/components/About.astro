@@ -1,15 +1,13 @@
 ---
 import Icon, { type IconName } from './Icon.astro';
-import Pixel from './Pixel.astro';
 import SectionHead from './SectionHead.astro';
 import { site } from '../lib/data';
-import { star } from '../lib/sprites';
 
 const { about } = site;
 ---
 <section id="about" class="section" aria-labelledby="about-h">
   <div class="wrap about-grid">
-    <div class="photos reveal">
+    <div class:list={['photos reveal', { solo: !about.polaroid }]}>
       <figure class="main-photo">
         <div class="frame photo-frame">
           {about.photo ? (
@@ -23,16 +21,14 @@ const { about } = site;
         </div>
         <figcaption class="hand cap">{about.photoCaption} <span aria-hidden="true">↙</span></figcaption>
       </figure>
-      <figure class="polaroid">
-        <div class="frame pol-frame">
-          {about.polaroid ? (
+      {about.polaroid && (
+        <figure class="polaroid">
+          <div class="frame pol-frame">
             <img src={about.polaroid} alt={about.polaroidAlt} width="300" height="300" loading="lazy" decoding="async" />
-          ) : (
-            <div class="pol-ph" role="img" aria-label="Photo of Ash's gaming setup coming soon"><Pixel sprite={star} /></div>
-          )}
-          <figcaption class="hand">{about.polaroidCaption}</figcaption>
-        </div>
-      </figure>
+            <figcaption class="hand">{about.polaroidCaption}</figcaption>
+          </div>
+        </figure>
+      )}
     </div>
 
     <div class="text">
@@ -59,6 +55,7 @@ const { about } = site;
   @media (min-width: 900px) { .about-grid { grid-template-columns: 0.9fr 1.1fr; align-items: center; gap: 72px; } }
 
   .photos { position: relative; max-width: 420px; width: 100%; margin-inline: auto; padding: 0 12% 40px 0; }
+  .photos.solo { max-width: 380px; padding-right: 0; }
   figure { margin: 0; }
   .photo-frame { --tilt: -2deg; overflow: hidden; padding: 8px; }
   .photo-frame img, .photo-ph { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 6px; }
@@ -72,9 +69,7 @@ const { about } = site;
 
   .polaroid { position: absolute; right: 0; bottom: 18%; width: 44%; }
   .pol-frame { --tilt: 5deg; padding: 7px 7px 4px; border-radius: 4px; }
-  .pol-frame img, .pol-ph { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 2px; }
-  .pol-ph { display: grid; place-items: center; background: linear-gradient(135deg, #24B8A8, #3D1F63); color: #D9B856; }
-  .pol-ph :global(.pixel) { width: 30%; }
+  .pol-frame img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 2px; }
   .pol-frame figcaption { text-align: center; font-size: 1.15rem; padding-top: 2px; }
 
   .bio { display: grid; gap: 14px; max-width: 60ch; }
