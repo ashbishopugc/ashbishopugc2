@@ -63,14 +63,14 @@
   "work": {
     "heading": "My work",
     "subtitle": "Available for paid ads, organic content and UGC retainers",
-    "categories": ["Gaming", "Tech", "Lifestyle"],
+    "categories": ["Gaming", "Tech", "Lifestyle", "Fashion"],
     "videos": [
       { "id": "logitech-a50", "brand": "Logitech", "category": "Gaming", "title": "Astro A50 headset", "tag": "Spec ad", "poster": "/media/logitech-astro-a50.webp", "video": "/media/logitech-astro-a50.mp4", "videoWebm": "/media/logitech-astro-a50.webm", "preview": "/media/logitech-astro-a50-preview.mp4", "previewWebm": "/media/logitech-astro-a50-preview.webm", "captions": "" },
+      { "id": "sorel-clogs", "brand": "Sorel", "category": "Fashion", "title": "Leopard clogs", "tag": "", "poster": "/media/sorel-clogs.webp", "video": "/media/sorel-clogs.mp4", "videoWebm": "/media/sorel-clogs.webm", "preview": "/media/sorel-clogs-preview.mp4", "previewWebm": "/media/sorel-clogs-preview.webm", "captions": "" },
       { "id": "v2", "brand": "Sample Desk Co.", "category": "Tech", "title": "Desk setup tour", "tag": "", "poster": "", "video": "", "videoWebm": "", "preview": "", "previewWebm": "", "captions": "" },
       { "id": "v3", "brand": "Sample Coffee Co.", "category": "Lifestyle", "title": "Morning routine", "tag": "", "poster": "", "video": "", "videoWebm": "", "preview": "", "previewWebm": "", "captions": "" },
       { "id": "v4", "brand": "Sample Controller Co.", "category": "Gaming", "title": "Controller review", "tag": "", "poster": "", "video": "", "videoWebm": "", "preview": "", "previewWebm": "", "captions": "" },
-      { "id": "v5", "brand": "Sample Phone Co.", "category": "Tech", "title": "Phone camera test", "tag": "", "poster": "", "video": "", "videoWebm": "", "preview": "", "previewWebm": "", "captions": "" },
-      { "id": "v6", "brand": "Sample Home Co.", "category": "Lifestyle", "title": "Cozy room reset", "tag": "", "poster": "", "video": "", "videoWebm": "", "preview": "", "previewWebm": "", "captions": "" }
+      { "id": "v5", "brand": "Sample Phone Co.", "category": "Tech", "title": "Phone camera test", "tag": "", "poster": "", "video": "", "videoWebm": "", "preview": "", "previewWebm": "", "captions": "" }
     ]
   },
 
