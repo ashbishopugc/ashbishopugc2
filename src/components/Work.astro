@@ -1,28 +1,31 @@
 ---
 import Pixel from './Pixel.astro';
 import SectionHead from './SectionHead.astro';
-import { site } from '../lib/data';
+import { site, level } from '../lib/data';
 import { icons } from '../lib/sprites';
 
 const { work } = site;
 const tilts = ['-1.5deg', '1.2deg', '-1deg', '1.8deg', '-1.8deg', '1deg'];
 const hasSamples = work.videos.some((v) => !v.video);
+const categories = work.categories.filter((c) => work.videos.some((v) => v.category === c));
 ---
 <section id="work" class="section" aria-labelledby="work-h">
   <div class="wrap">
     <SectionHead
-      eyebrow="Level 3 · Top plays"
+      eyebrow={`${level('work')} · Top plays`}
       heading={work.heading}
       id="work-h"
       note={work.subtitle}
       sample={hasSamples ? 'sample videos' : undefined}
     />
 
-    <div class="filters reveal" role="group" aria-label="Filter videos by category">
-      {['All', ...work.categories].map((c, i) => (
-        <button class="pill filter" type="button" data-filter={c} aria-pressed={i === 0 ? 'true' : 'false'}>{c}</button>
-      ))}
-    </div>
+    {categories.length > 1 && (
+      <div class="filters reveal" role="group" aria-label="Filter videos by category">
+        {['All', ...categories].map((c, i) => (
+          <button class="pill filter" type="button" data-filter={c} aria-pressed={i === 0 ? 'true' : 'false'}>{c}</button>
+        ))}
+      </div>
+    )}
 
     <ul class="grid" data-grid>
       {work.videos.map((v, i) => (

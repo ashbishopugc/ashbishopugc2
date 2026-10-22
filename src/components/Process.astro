@@ -1,13 +1,13 @@
 ---
 import SectionHead from './SectionHead.astro';
-import { site } from '../lib/data';
+import { site, level } from '../lib/data';
 
 const { process } = site;
 const tilts = ['-1.5deg', '1.2deg', '-1deg', '1.6deg'];
 ---
 <section id="process" class="section" aria-labelledby="process-h">
   <div class="wrap">
-    <SectionHead eyebrow="Level 5 · Level select" heading={process.heading} id="process-h" />
+    <SectionHead eyebrow={`${level('process')} · Level select`} heading={process.heading} id="process-h" />
     <ol class="steps">
       {process.steps.map((s, i) => (
         <li class="step frame reveal" style={`--tilt:${tilts[i % tilts.length]}`}>

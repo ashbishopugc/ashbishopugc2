@@ -1,7 +1,7 @@
 ---
 import Pixel from './Pixel.astro';
 import SectionHead from './SectionHead.astro';
-import { site } from '../lib/data';
+import { site, level } from '../lib/data';
 import { icons } from '../lib/sprites';
 
 const { stats, work } = site;
@@ -19,7 +19,7 @@ const brandOf = (id: string) => work.videos.find((v) => v.id === id)?.brand ?? '
 ---
 <section id="stats" class="section" aria-labelledby="stats-h">
   <div class="wrap">
-    <SectionHead eyebrow="Level 2 · High scores" heading={stats.heading} id="stats-h" sample={stats.sampleNote || undefined} />
+    <SectionHead eyebrow={`${level('stats')} · High scores`} heading={stats.heading} id="stats-h" sample={stats.sampleNote || undefined} />
     <ol class="board">
       {stats.rows.map((row, i) => (
         <li class="row reveal">

@@ -10,6 +10,7 @@ import Process from '../components/Process.astro';
 import Contact from '../components/Contact.astro';
 import Track from '../components/Track.astro';
 import Lightbox from '../components/Lightbox.astro';
+import { showStats, showBrands } from '../lib/data';
 ---
 <Base>
   <Header />
@@ -17,10 +18,10 @@ import Lightbox from '../components/Lightbox.astro';
     <Hero />
     <div class="tri tri-divider" aria-hidden="true" data-stripe></div>
     <About />
-    <Stats />
+    {showStats && <Stats />}
     <div class="tri tri-divider" aria-hidden="true" data-stripe></div>
     <Work />
-    <Brands />
+    {showBrands && <Brands />}
     <Process />
     <div class="tri tri-divider" aria-hidden="true" data-stripe></div>
     <Contact />

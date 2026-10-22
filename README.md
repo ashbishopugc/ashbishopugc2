@@ -37,6 +37,13 @@ Import this repo in Vercel (**Add New → Project → ashbishopugc2**). Vercel d
 
 Put media files in `public/media/` and reference them as `/media/file.mp4`. Keep videos as vertical H.264 MP4s. Hover previews should be 4MB or less. Posters should be WebP or AVIF.
 
+**Sections show only when they have real content.** Results (High Scores) appears once `stats.rows` has entries, and Brands appears once `brands.rowOne`, `brands.rowTwo` or `brands.testimonials` does. The menu, scroll track and level numbers adjust on their own. Work filters list only categories that have a video. Example entries:
+
+```json
+"rows": [{ "video": "logitech-a50", "label": "Astro A50 headset", "views": 12000, "likes": 900, "comments": 40, "shares": 25, "saves": 60 }]
+"testimonials": [{ "quote": "…", "brand": "Brand name", "role": "Their job title" }]
+```
+
 Placeholders show a "sample" tag. These tags disappear when you replace the sample brands, add real videos or clear `stats.sampleNote`.
 
 ## Contact form

@@ -52,12 +52,7 @@
   "stats": {
     "heading": "Recent best performing",
     "sampleNote": "sample numbers",
-    "rows": [
-      { "video": "v5", "label": "Phone camera test", "views": 1240000, "likes": 86300, "comments": 2140, "shares": 5120, "saves": 9870 },
-      { "video": "v2", "label": "Desk setup tour", "views": 812000, "likes": 54900, "comments": 1380, "shares": 3410, "saves": 12600 },
-      { "video": "v3", "label": "Morning routine", "views": 498000, "likes": 31200, "comments": 960, "shares": 1870, "saves": 4450 },
-      { "video": "v4", "label": "Controller review", "views": 356000, "likes": 22800, "comments": 740, "shares": 1290, "saves": 3020 }
-    ]
+    "rows": []
   },
 
   "work": {
@@ -66,24 +61,16 @@
     "categories": ["Gaming", "Tech", "Lifestyle", "Fashion"],
     "videos": [
       { "id": "logitech-a50", "brand": "Logitech", "category": "Gaming", "title": "Astro A50 headset", "tag": "Spec ad", "poster": "/media/logitech-astro-a50.webp", "video": "/media/logitech-astro-a50.mp4", "videoWebm": "/media/logitech-astro-a50.webm", "preview": "/media/logitech-astro-a50-preview.mp4", "previewWebm": "/media/logitech-astro-a50-preview.webm", "captions": "" },
-      { "id": "sorel-clogs", "brand": "Sorel", "category": "Fashion", "title": "Leopard clogs", "tag": "Spec ad", "poster": "/media/sorel-clogs.webp", "video": "/media/sorel-clogs.mp4", "videoWebm": "/media/sorel-clogs.webm", "preview": "/media/sorel-clogs-preview.mp4", "previewWebm": "/media/sorel-clogs-preview.webm", "captions": "" },
-      { "id": "v2", "brand": "Sample Desk Co.", "category": "Tech", "title": "Desk setup tour", "tag": "", "poster": "", "video": "", "videoWebm": "", "preview": "", "previewWebm": "", "captions": "" },
-      { "id": "v3", "brand": "Sample Coffee Co.", "category": "Lifestyle", "title": "Morning routine", "tag": "", "poster": "", "video": "", "videoWebm": "", "preview": "", "previewWebm": "", "captions": "" },
-      { "id": "v4", "brand": "Sample Controller Co.", "category": "Gaming", "title": "Controller review", "tag": "", "poster": "", "video": "", "videoWebm": "", "preview": "", "previewWebm": "", "captions": "" },
-      { "id": "v5", "brand": "Sample Phone Co.", "category": "Tech", "title": "Phone camera test", "tag": "", "poster": "", "video": "", "videoWebm": "", "preview": "", "previewWebm": "", "captions": "" }
+      { "id": "sorel-clogs", "brand": "Sorel", "category": "Fashion", "title": "Leopard clogs", "tag": "Spec ad", "poster": "/media/sorel-clogs.webp", "video": "/media/sorel-clogs.mp4", "videoWebm": "/media/sorel-clogs.webm", "preview": "/media/sorel-clogs-preview.mp4", "previewWebm": "/media/sorel-clogs-preview.webm", "captions": "" }
     ]
   },
 
   "brands": {
     "heading": "Brands I've worked with",
     "subtitle": "brands that joined the party",
-    "rowOne": ["Sample Audio Co.", "Sample Desk Co.", "Sample Coffee Co.", "Sample Keys Co.", "Sample Light Co."],
-    "rowTwo": ["Sample Controller Co.", "Sample Phone Co.", "Sample Home Co.", "Sample Snack Co.", "Sample Chair Co."],
-    "testimonials": [
-      { "quote": "Ash got the brief straight away. The first hook beat our control ad in week one.", "brand": "Sample Audio Co.", "role": "Growth Marketing Manager" },
-      { "quote": "Fast, easy to work with, and the videos feel like real posts, not ads.", "brand": "Sample Desk Co.", "role": "Brand Partnerships Lead" },
-      { "quote": "We ordered four videos and ran all four. That never happens.", "brand": "Sample Phone Co.", "role": "Paid Social Lead" }
-    ]
+    "rowOne": [],
+    "rowTwo": [],
+    "testimonials": []
   },
 
   "process": {

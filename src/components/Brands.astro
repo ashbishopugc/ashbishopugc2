@@ -1,7 +1,7 @@
 ---
 import Pixel from './Pixel.astro';
 import SectionHead from './SectionHead.astro';
-import { site } from '../lib/data';
+import { site, level } from '../lib/data';
 import { star, icons } from '../lib/sprites';
 
 const { brands } = site;
@@ -10,7 +10,7 @@ const rows = [brands.rowOne, brands.rowTwo];
 ---
 <section id="brands" class="section" aria-labelledby="brands-h">
   <div class="wrap">
-    <SectionHead eyebrow="Level 4 · The party" heading={brands.heading} id="brands-h" note={brands.subtitle} sample={isSample ? 'sample brands' : undefined} />
+    <SectionHead eyebrow={`${level('brands')} · The party`} heading={brands.heading} id="brands-h" note={brands.subtitle} sample={isSample ? 'sample brands' : undefined} />
   </div>
 
   <ul class="sr-only">

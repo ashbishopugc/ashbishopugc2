@@ -1,7 +1,7 @@
 ---
 import Icon, { type IconName } from './Icon.astro';
 import SectionHead from './SectionHead.astro';
-import { site } from '../lib/data';
+import { site, level } from '../lib/data';
 
 const { about } = site;
 ---
@@ -32,7 +32,7 @@ const { about } = site;
     </div>
 
     <div class="text">
-      <SectionHead eyebrow="Level 1 · Player profile" heading={about.heading} id="about-h" />
+      <SectionHead eyebrow={`${level('about')} · Player profile`} heading={about.heading} id="about-h" />
       <div class="bio reveal">
         {about.bio.map((p) => <p>{p}</p>)}
       </div>
