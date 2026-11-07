@@ -18,9 +18,9 @@
 
   "hero": {
     "tagline": "Ready to press start?",
-    "reel": "",
-    "reelWebm": "",
-    "reelPoster": "",
+    "reel": "/media/hero-reel.mp4",
+    "reelWebm": "/media/hero-reel.webm",
+    "reelPoster": "/media/hero-reel.webp",
     "reelCaptions": "",
     "primaryButton": "Watch my work",
     "secondaryButton": "Let's talk"

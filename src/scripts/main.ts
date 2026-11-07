@@ -89,7 +89,8 @@ const updateScroll = () => {
   if (y >= max - 2) i = sectionEls.length - 1;
   let frac = 0;
   if (i < sectionEls.length - 1 && y < max - 2) {
-    const a = tops[i], b = tops[i + 1];
+    // The first leg starts at scroll 0 (where the probe already sits 40% down), so the truck starts on HOME.
+    const a = i === 0 ? innerHeight * 0.4 : tops[i], b = tops[i + 1];
     frac = Math.min(1, Math.max(0, (probe - a) / (b - a)));
   }
   const n = sectionEls.length - 1;
