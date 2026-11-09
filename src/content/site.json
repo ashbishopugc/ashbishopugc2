@@ -58,10 +58,11 @@
   "work": {
     "heading": "My work",
     "subtitle": "Available for paid ads, organic content and UGC retainers",
-    "categories": ["Gaming", "Tech", "Lifestyle", "Fashion"],
+    "categories": ["Gaming", "Tech", "Lifestyle", "Fashion", "Beauty"],
     "videos": [
       { "id": "logitech-a50", "brand": "Logitech", "category": "Gaming", "title": "Astro A50 headset", "tag": "Spec ad", "poster": "/media/logitech-astro-a50.webp", "video": "/media/logitech-astro-a50.mp4", "videoWebm": "/media/logitech-astro-a50.webm", "preview": "/media/logitech-astro-a50-preview.mp4", "previewWebm": "/media/logitech-astro-a50-preview.webm", "captions": "" },
-      { "id": "sorel-clogs", "brand": "Sorel", "category": "Fashion", "title": "Leopard clogs", "tag": "Spec ad", "poster": "/media/sorel-clogs.webp", "video": "/media/sorel-clogs.mp4", "videoWebm": "/media/sorel-clogs.webm", "preview": "/media/sorel-clogs-preview.mp4", "previewWebm": "/media/sorel-clogs-preview.webm", "captions": "" }
+      { "id": "sorel-clogs", "brand": "Sorel", "category": "Fashion", "title": "Leopard clogs", "tag": "Spec ad", "poster": "/media/sorel-clogs.webp", "video": "/media/sorel-clogs.mp4", "videoWebm": "/media/sorel-clogs.webm", "preview": "/media/sorel-clogs-preview.mp4", "previewWebm": "/media/sorel-clogs-preview.webm", "captions": "" },
+      { "id": "glamnetic-nails", "brand": "Glamnetic", "category": "Beauty", "title": "Press-on nails", "tag": "Spec ad", "poster": "/media/glamnetic-nails.webp", "video": "/media/glamnetic-nails.mp4", "videoWebm": "/media/glamnetic-nails.webm", "preview": "/media/glamnetic-nails-preview.mp4", "previewWebm": "/media/glamnetic-nails-preview.webm", "captions": "" }
     ]
   },
 
